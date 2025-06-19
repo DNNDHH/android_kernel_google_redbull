@@ -26,17 +26,17 @@ jobs:
     - name: ⚙️ 克隆构建框架（KernelSU-Next）
       run: |
         git clone --depth=1 -b next https://github.com/rifsxd/KernelSU-Next ksu-next
-        cp -r ksu-next/kernel/* ./
+        cp -r ksu-next/* ./
 
     - name: 🧱 执行 setup.sh 初始化构建环境
       run: |
         chmod +x setup.sh
         ./setup.sh next-susfs
 
-    - name: 🚀 编译内核（redbull 设备）# Pixel 5 使用 7250  ？
+    - name: 🚀 编译内核（redbull GKI）
       run: |
-        chmod +x build_sm7250.sh
-        ./build_sm7250.sh
+        chmod +x build_redbull-gki.sh
+        ./build_redbull-gki.sh
 
     - name: 📦 上传构建产物
       uses: actions/upload-artifact@v4
