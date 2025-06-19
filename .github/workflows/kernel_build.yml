@@ -33,13 +33,10 @@ jobs:
         chmod +x setup.sh
         ./setup.sh next-susfs
 
-    - name: 🧪 查看当前文件结构（可选）
-      run: ls -la
-
-    - name: 🚀 编译内核
+    - name: 🚀 编译内核（redbull 设备）# 使用 GKI ？
       run: |
-        chmod +x build.sh
-        ./build.sh
+        chmod +x build_redbull-gki.sh
+        ./build_redbull-gki.sh
 
     - name: 📦 上传构建产物
       uses: actions/upload-artifact@v4
