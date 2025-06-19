@@ -33,10 +33,10 @@ jobs:
         chmod +x setup.sh
         ./setup.sh next-susfs
 
-    - name: 🚀 编译内核（redbull 设备）# 使用 GKI ？
+    - name: 🚀 编译内核（redbull 设备）# Pixel 5 使用 7250  ？
       run: |
-        chmod +x build_redbull-gki.sh
-        ./build_redbull-gki.sh
+        chmod +x build_sm7250.sh
+        ./build_sm7250.sh
 
     - name: 📦 上传构建产物
       uses: actions/upload-artifact@v4
