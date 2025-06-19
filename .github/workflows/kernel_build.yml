@@ -23,12 +23,22 @@ jobs:
           libssl-dev libelf-dev libncurses-dev \
           python3 python3-pip
 
-    - name: ⚙️ 执行 setup.sh，配置 KernelSU Next 构建环境
+    - name: ⚙️ 克隆构建框架（KernelSU-Next）
       run: |
-        curl -LSs "https://raw.githubusercontent.com/rifsxd/KernelSU-Next/next/kernel/setup.sh" | bash -s next-susfs
+        git clone --depth=1 -b next https://github.com/rifsxd/KernelSU-Next ksu-next
+        cp -r ksu-next/kernel/* ./
 
-    - name: 🧱 编译内核
+    - name: 🧱 执行 setup.sh 初始化构建环境
       run: |
+        chmod +x setup.sh
+        ./setup.sh next-susfs
+
+    - name: 🧪 查看当前文件结构（可选）
+      run: ls -la
+
+    - name: 🚀 编译内核
+      run: |
+        chmod +x build.sh
         ./build.sh
 
     - name: 📦 上传构建产物
@@ -41,4 +51,3 @@ jobs:
           out/**/*.dtb
           out/**/*.zip
           AnyKernel3/*.zip
-          AnyKernel3/*.img
